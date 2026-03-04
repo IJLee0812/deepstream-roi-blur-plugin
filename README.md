@@ -2,6 +2,10 @@
 
 A CUDA-accelerated ROI (Region of Interest) blur library for NVIDIA DeepStream pipelines. Applies Gaussian-approximated blur to detected object bounding boxes **directly on GPU memory (NVMM)** — no CPU round-trip, no OpenCV dependency.
 
+## Motivation
+
+As of DeepStream 7.x, there is **no built-in GStreamer plugin or DeepStream element** that performs ROI-level blurring on NVMM buffers. The commonly suggested workaround — using `pyds.get_nvds_buf_surface()` + OpenCV — copies pixel data to CPU, breaking the zero-copy NVMM pipeline and degrading performance. This plugin was developed to fill that gap: a lightweight, NVMM-compliant CUDA library that can blur detected regions (e.g., faces, license plates) entirely on GPU, invoked from a standard DeepStream pad probe via Python ctypes.
+
 ## Key Features
 
 - **Zero-copy NVMM operation** — reads and writes `NvBufSurface.dataPtr` (GPU device memory) directly via CUDA kernels. The buffer never leaves GPU memory.

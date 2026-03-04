@@ -2,7 +2,7 @@
  * roi_blur_kernels.cu
  *
  * CUDA separable box-blur kernels.
- * GLib/GStreamer 헤더 없음 — nvcc 단독 컴파일 가능.
+ * No GLib/GStreamer headers - compiles standalone with nvcc.
  */
 
 #include <cuda_runtime.h>

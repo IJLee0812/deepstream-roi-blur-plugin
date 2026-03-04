@@ -1,10 +1,10 @@
 /*
  * roi_blur_gst.c
  *
- * GStreamer 버퍼에서 NvBufSurface GPU 포인터를 추출하여
- * CUDA 블러 함수(roi_blur_kernels.cu)를 호출.
+ * Extracts NvBufSurface GPU pointer from a GstBuffer and
+ * invokes the CUDA blur function defined in roi_blur_kernels.cu.
  *
- * gcc로 컴파일 — GLib/nvcc 헤더 충돌 없음.
+ * Compiled with gcc (separate from nvcc) to avoid GLib/CUDA header conflicts.
  */
 
 #include <stdio.h>
@@ -13,14 +13,13 @@
 #include <gst/gst.h>
 #include "nvbufsurface.h"
 
-/* CUDA 커널 파일에서 제공하는 함수 (forward declaration) */
 int  roi_blur_cuda(unsigned char *gpu, int pitch, int W, int H,
                    int roi_x, int roi_y, int roi_w, int roi_h,
                    int kernel_size, int passes);
 void roi_blur_free(void);
 
 /* ================================================================
- *  Public API – Python ctypes에서 호출
+ *  Public API - called from Python via ctypes
  * ================================================================ */
 
 int roi_blur_apply(unsigned long long gst_buf_addr, int batch_id,
