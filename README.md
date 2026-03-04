@@ -176,6 +176,10 @@ The separable approach means the complexity is O(1) per pixel regardless of kern
 - **Efficient memory use** — single persistent temp buffer, lazily allocated and reused across frames
 - **Kernel launch overhead** is minimal (~2 microseconds per launch × 2 kernels × passes)
 
+## Sample
+
+<img width="694" height="163" alt="Image" src="https://github.com/user-attachments/assets/c0afcbd7-0a1c-4121-a6c0-6bd5ad6fe2b8" />
+
 ## License
 
 MIT License. See [LICENSE](LICENSE) for details.
